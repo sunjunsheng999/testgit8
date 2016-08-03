@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('<input />', {
+                id: 'text1',
+                type: "text",
+                value: "300"
+            }).appendTo("body");
+
+            $('<br />').appendTo("body");
+            $('<br />').appendTo("body");
+
+            $('<input />', {
+                id: 'buttonAdd',
+                type: "button",
+                value: "+",
+                click: function () {
+                    var text = $('#text1').val();
+                    $('#text1').val(parseInt(text) + 1);
+                }
+            }).appendTo("body");
+
+            $('<input />', {
+                id: 'buttonSubtract',
+                type: "button",
+                value: "-",
+                click: function () {
+                    var text = $('#text1').val();
+                    $('#text1').val(parseInt(text) - 1);
+                }
+            }).appendTo("body");
+
+        });
+    </script>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>

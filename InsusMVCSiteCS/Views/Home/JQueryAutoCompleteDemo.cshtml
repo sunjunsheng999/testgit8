@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "JQuery AutoComplete Demo";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-1.10.4.js"></script>
+<script src="~/Scripts/insus.common.utility.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Text1").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    //url: "/Handlers/Handler1.ashx?prefix=" + request.term,
+                    url: "/Handlers/AutoComplete.ashx?tableName=PinYin&prefix=" + request.term,
+                    dataType: "json",
+                    type: "POST",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Word  //,
+                                //value: item.ID
+                            }
+                        }))
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $.AlertException(XMLHttpRequest, errorThrown);
+                    },
+                });
+
+            },
+            minLength: 1
+        });
+    });
+</script>
+<input id="Text1" type="text" />

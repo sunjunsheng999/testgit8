@@ -1,0 +1,71 @@
+﻿@using Insus.NET.HtmlHelpers;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    <script src="~/Scripts/insus.common.utility.js"></script>
+
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-ui-1.10.4.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "/Home/GetDateFormatForRadio",
+                dataType: "json",
+                type: "Get",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $('<input />', {
+                            type: "radio",
+                            name: "df",
+                            val: item.Format
+                        }).appendTo("#RadioDateFormat");
+                        $('<label>', {
+                            text: item.Format,
+                        }).appendTo("#RadioDateFormat");
+                        $('<br />').appendTo("#RadioDateFormat");
+
+                        $(':radio[name="df"]').change(function () {
+                            $("#Text1").datepicker("option", "dateFormat", $(this).val());
+                        });
+                    });
+                  
+                    $(':radio[name="df"]').change(function () {
+                        $("#Text1").datepicker("option", "dateFormat", $(this).val());
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.AlertException(XMLHttpRequest, errorThrown);
+                }
+            });
+
+
+            $("#Text1").datepicker();
+        });
+    </script>
+</head>
+<body>
+    <div>
+        @Html.Hi("Insus.NET")<br />
+        @Html.Say("Insus.NET")
+    </div>
+    <br />
+    <br />
+    Format options:<br>
+    <div id="RadioDateFormat"></div>
+    <br />
+    <br />
+    date: <input id="Text1" type="text" /><br />
+    <br />
+    <br />
+</body>
+</html>

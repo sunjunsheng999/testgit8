@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Web Service Demo</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            
+            $("#ButtonHi").click(function () {
+                $.GetService('/Services/SayHello.asmx/Hi', $("#TextName1").val()) ;
+            });
+
+            $("#ButtonSay").click(function () {
+                $.GetService('/Services/SayHello.asmx/Say', $("#TextName1").val());
+            });
+        });
+
+        $.extend({
+            GetService: function (url, inputValue) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        userName: inputValue
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        alert(data.d);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        Name: <input id="TextName1" type="text" />&nbsp;
+        <input id="ButtonHi" type="button" value="Hi" />&nbsp;
+        <input id="ButtonSay" type="button" value="Say" /><br />
+    </div>
+</body>
+</html>

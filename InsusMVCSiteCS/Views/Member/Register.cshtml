@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+<script src="~/Scripts/insus.common.utility.js"></script>
+
+<script type="text/javascript">
+    ////<![CDATA[
+    $(document).ready(function () {
+        $("#Registerform").validate({
+            rules: {
+                Account: "required",
+                Password: "required",
+                ConfirmPassword: {
+                    required: true,
+                    equalTo: "#Password"
+                },
+                Email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                Account: "输入帐号。",
+                Password: "输入密码。",
+                ConfirmPassword: {
+                    required: "输入确认密码。",
+                    equalTo: "输入相同的密码。"
+                },
+                Email: {
+                    required: "输入邮箱地址。",
+                    email: "不是有效的邮箱地址。"
+                }
+            }
+        });
+
+        $('#btnReg').click(function () {
+            if ($('#Registerform').valid()) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Member/Register',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        Account: $('#Account').val(),
+                        Password: $('#ConfirmPassword').val(),
+                        Email: $("#Email").val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data, textStatus) {
+                        alert("注册成功。");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) { 
+                        $.AlertException(XMLHttpRequest, errorThrown);
+                    },                   
+                    
+                });
+            }
+            else {
+                return;
+            }
+        });
+    });
+
+    //]]>
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "Registerform" }))
+{
+    <span>Account </span><input type="text" id="Account" name="Account" /><br />
+    <span>Password </span><input type="password" id="Password" name="Password" /><br />
+    <span>Confirm Password </span><input type="password" id="ConfirmPassword" name="ConfirmPassword" /><br />
+    <span>Email </span><input type="text" id="Email" name="Email" />
+    <input id="btnReg" type="button" value="注册" />   
+    
+
+}

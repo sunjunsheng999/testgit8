@@ -1,0 +1,47 @@
+﻿@using Insus.NET.HtmlHelpers;
+@using Insus.NET.AspNets;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ascx Demo</title>
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$.ajax({
+            //    type: 'GET',
+            //    url: '/Exercise2/ShowUc',
+            //    dataType: 'html',               
+            //    success: function (data, textStatus) {
+            //        $('#DivUc').html(data)
+            //    }
+            //});
+
+            $('#ButtonGet').click(function () {
+                var v = $("[id$=TextBox1]").val();
+                alert(v);
+            })
+
+            $('#ButtonSet').click(function () {
+                var v = $("[id$=TextBox1]").val("Insus.NET");               
+            })
+        });
+    </script>
+
+</head>
+<body>
+    <div> 
+        <input id="ButtonGet" type="button" value="Get" /> &nbsp;
+        <input id="ButtonSet" type="button" value="Set" /><br />
+        @*<div id="DivUc"></div>*@      
+
+        @(Html.RenderControl<Insus.NET.AspNets.Uc1>("~/AspNets/Uc1.ascx"))
+    </div>
+</body>
+</html>

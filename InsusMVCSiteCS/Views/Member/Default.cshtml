@@ -1,0 +1,37 @@
+﻿@using Insus.NET.Utilities
+@{
+    ViewBag.Title = "Default";
+}
+<script src="~/Scripts/insus.common.utility.js"></script>
+
+<script type="text/javascript">
+    ////<![CDATA[
+    $(document).ready(function () { 
+        $('#btnSignOut').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Member/SignOut',
+                    dataType: 'json',
+                    data: null,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data, textStatus) {
+                        alert("当前用户已经成功注销。");
+                        window.location.href = data.RedirectUrl;
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $.AlertException(XMLHttpRequest, errorThrown);
+                    }
+                });          
+        });
+    });
+    //]]>
+</script>
+
+Hi @CookieUtility.UserName!<br />
+Welcome to Insus.NET exercise site.
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "logoutform" })){
+    
+    <input id="btnSignOut" type="button" value="Sign out" />
+}

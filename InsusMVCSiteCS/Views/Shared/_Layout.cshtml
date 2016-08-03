@@ -1,0 +1,34 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")    
+    <link href="~/Content/MenuNavigationBar.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <header style="background-color:green; height:50px;">
+            <b>Insus.NET MVC 5 exercise</b>
+           
+             <div id="Menu_nb">
+                <ul>
+                    <li>@Html.ActionLink("Category", "Index", "Category")</li>
+                    <li>@Html.ActionLink("Kind", "Index", "Kind")</li>
+                    <li>@Html.ActionLink("Fruit", "Index", "Fruit")</li>
+                </ul>
+            </div>
+        </header>
+        <div id="body">
+            @RenderBody()
+        </div>
+        <footer style="background-color:green; height:30px;">
+            <p>&copy; @DateTime.Now.Year @@ Insus.NET</p>
+        </footer>
+    </div>
+</body>
+</html>

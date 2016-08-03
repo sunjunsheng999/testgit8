@@ -1,0 +1,14 @@
+﻿@model FruitKind
+@using Insus.NET.Entities;
+@using Insus.NET.Models;
+
+@{
+    var fcEntity = new FruitCategoryEntity();    
+}
+
+<td style="border: 1px solid #0094ff;">
+    @Html.DropDownListFor(o => Model.FruitCategory_nbr, fcEntity.SelectLists(), "选择...")
+</td>
+<td style="border: 1px solid #0094ff;">
+    @Html.TextBoxFor(o => Model.KindName)
+</td>

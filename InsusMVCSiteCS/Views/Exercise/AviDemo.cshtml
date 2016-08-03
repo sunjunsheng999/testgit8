@@ -1,0 +1,37 @@
+﻿@model VideoMedia
+@using Insus.NET.Models;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AviDemo</title>
+</head>
+<body>
+    <div>
+        <object id="AviPlayer" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6"
+                width="@Html.DisplayFor(model => model.Width)"
+                height="@Html.DisplayFor(model => model.Height)"
+                codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701"
+                standby="Loading Microsoft Windows Media Player components..."
+                type="application/x-oleobject">
+            <param name="autoStart" value="false" />
+            <param name="url" value="@Html.DisplayFor(model =>model.FilePath)" />
+            <param name="wmode" value="transparent" />
+            <param name="uiMode" value="full" />
+            <param name="loop" value="false" />
+            <embed id="EmbedmediaPlayer"
+                   type="application/x-mplayer2"
+                   src="@Html.DisplayFor(model => model.FilePath)"
+                   width="@Html.DisplayFor(model => model.Width)"
+                   height="@Html.DisplayFor(model => model.Height)">
+            </embed>
+        </object>
+    </div>
+</body>
+</html>

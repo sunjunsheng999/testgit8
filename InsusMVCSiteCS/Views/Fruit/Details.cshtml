@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+
+<script type="text/javascript">   
+
+    $(document).ready(function () {
+        var nbr = $.urlParam('fruit_nbr');
+
+        $.getJSON("/Fruit/GetFruitDataByPrimaryKey", { fruit_nbr: nbr }, function (data) {
+            var tbody = $('#tbody1');
+            $.each(data, function (i, item) {
+                OutputData(tbody, item);                
+            });
+        });
+    });
+
+    $.urlParam = function (name) {
+        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null) {
+            return null;
+        }
+        else {
+            return results[1] || 0;
+        }
+    }
+
+    function OutputData(tbody, item) {
+        tbody.append("<tr>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.Fruit_nbr +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.CategoryName +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.KindName +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.FruitName +
+                    "</td>" +
+                    "</tr>");
+    }
+       
+  
+</script>
+
+    <table class="table" style="border-collapse: collapse; width: 40%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">ID</th>
+                <th style="border: 1px solid #0094ff;">Category</th>
+                <th style="border: 1px solid #0094ff;">Kind</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+            </tr>
+        </thead>
+        <tbody id="tbody1"></tbody>
+    </table>
+   

@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UpdateDataToService</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    <script src="~/Scripts/insus.common.utility.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'post',
+                url: "http://localhost:50369/Services/FruitKind.svc/GetByPrimaryKey",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({
+                    fruitKind_nbr: $.urlParam('fruitKind_nbr'),
+                }),
+                success: function (data) {
+                    var tbody = $('#tbody1');
+                    $.each(data, function (i, item) {
+                        WriteOutputData(tbody, item);
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+
+        function WriteOutputData(tbody, item) {
+            var html = "<tr><td style=\"border: 1px solid #0094ff;\">";
+            html += item.FruitKind_nbr + "<input id=\"FruitKind_nbr\" type=\"hidden\"  value=\""
+                 + item.FruitKind_nbr + "\" /></td><td  style=\"border: 1px solid #0094ff;\">";
+            html += "<select id=\"category\" name=\"category\"></select></td><td style=\"border: 1px solid #0094ff;\">";
+            html += "<input type=\"text\" id=\"FruitName\" name=\"FruitName\" value=\""
+                 + item.KindName + "\" /></td></tr>";
+
+            tbody.append(html);
+
+            $.get("/Category/GetJsonCategory", null, function (data) {
+                $.DdlBind($('#category'), data, item.FruitCategory_nbr);
+            });
+        }
+
+        $.urlParam = function (name) {
+            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results == null) {
+                return null;
+            }
+            else {
+                return results[1] || 0;
+            }
+        }
+
+        $(document).ready(function () {
+            $("#btnUpdate").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:50369/Services/FruitKind.svc/Update',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "xml",
+                    data: JSON.stringify({
+                        FruitKind_nbr: $('#FruitKind_nbr').val(),
+                        FruitCategory_nbr: $('#category').val(),
+                        KindName: $('#FruitName').val()
+                    }),
+                    success: function (data) {
+                        alert("数据成功更新。");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            });
+        })
+
+    </script>
+</head>
+<body>
+    <div>
+        <table id="FruitKind" style="border-collapse: collapse;
+            border: 1px solid #0094ff; width:45%;">
+            <tr>
+                <th style="border: 1px solid #0094ff;">FruitKind_nbr</th>
+                <th style="border: 1px solid #0094ff;">CategoryName</th>
+                <th style="border: 1px solid #0094ff;">KindName</th>
+            </tr>
+            <tbody id="tbody1"></tbody>
+        </table>
+        <br />
+        <br />
+        <button id="btnUpdate">Update</button>
+    </div>
+</body>
+</html>

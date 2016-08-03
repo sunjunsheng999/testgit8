@@ -1,0 +1,21 @@
+﻿@model FruitKind
+@using Insus.NET.Models;
+@{
+    ViewBag.Title = "Details";
+}
+
+<table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #0094ff;">ID</th>
+            <th style="border: 1px solid #0094ff;">Category</th>
+            <th style="border: 1px solid #0094ff;">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @Html.Partial("~/Views/Kind/_PartialKind.cshtml")
+        </tr>
+    </tbody>
+</table>
+@Html.ActionLink("Go back List", "Index")

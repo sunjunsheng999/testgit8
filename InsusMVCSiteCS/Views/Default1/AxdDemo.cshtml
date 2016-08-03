@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AxdDemo</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Button1').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '/i.axd',                   
+                    dataType: 'html',
+                    data: {
+                        v: $('#Text1').val()
+                    },
+                    contentType: 'application/html; charset=utf-8',
+                    success: function (data) {
+                        $('#Text1').val('');
+                        $('span').html(data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            })
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input id="Text1" type="text" />
+        <input id="Button1" type="button" value="Call" /><br />
+       <span></span>
+    </div>
+</body>
+</html>

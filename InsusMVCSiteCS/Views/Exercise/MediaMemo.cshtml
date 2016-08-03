@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Media Memo</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Exercise/MediaVideoPlayer',
+                dataType: 'html',              
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#DivMP').html(data)
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="DivMP">
+
+    </div>
+</body>
+</html>

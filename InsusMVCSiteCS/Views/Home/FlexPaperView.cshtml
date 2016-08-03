@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FlexPaperView</title>
+    <style>
+        #flashContent {
+            display: none;
+        }
+    </style>
+
+    <script src="~/Scripts/jquery-2.0.3.js"></script>
+    <script src="~/Scripts/js/flexpaper_flash.js"></script>
+    <script src="~/Scripts/js/flexpaper_flash_debug.js"></script>
+    <script src="~/Scripts/js/swfobject/swfobject.js"></script>
+
+    <script type="text/javascript">
+        $.ajax({
+            url: "/Home/GetSwf",
+            dataType: "json",
+            type: "Get",
+            data: {
+                ID: "129"
+            },
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    var script = "<script type=\"text/javascript\">var swfFile = '" +
+                        item.swfFile + "'</scr" + "ipt>";
+                    $('head').append(script);
+                });
+
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                s.src = "/Scripts/js/InsusDocumentView.js";
+                $("head").append(s);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                Alert(XMLHttpRequest, errorThrown);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div style="position: absolute; left: 3px; top: 3px;" align="center">
+        <div id="flashContent">
+            <p>
+                To view this page ensure that Adobe Flash Player version 10.0.0 or greater is installed.
+            </p>
+            <script type="text/javascript">
+                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://");
+                document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" +
+                    pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>");
+            </script>
+        </div>
+    </div>
+</body>
+</html>

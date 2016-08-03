@@ -1,0 +1,21 @@
+﻿@model FruitCategory
+@using Insus.NET.Models;
+
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm())
+{
+    <div class="editor-label">
+        category Name :
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.CategoryName)
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Create</button>
+        @Html.ActionLink("列表", "Index")
+    </div>
+}
+
+

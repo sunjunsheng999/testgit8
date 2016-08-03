@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnGetData').click(function () {
+            $('#tbody1').empty();
+            $.getJSON("/Home/GetJsonData", null, function (data) {               
+                var tbody = $('#tbody1');
+                $.each(data, function (i, item) {
+                    OutputData(tbody, item);
+                });
+            });
+        });
+    });
+
+    function OutputData(tbody, item) {
+        tbody.append("<tr>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.FruitKind_nbr +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.CategoryName +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.KindName +
+                    "</td>" +                    
+                    "</tr>");
+    }
+</script>
+
+<input id="btnGetData" type="button" value="Get Data" />
+<table class="table" style="border-collapse: collapse; width: 40%;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #0094ff;">ID</th>
+            <th style="border: 1px solid #0094ff;">Category</th>
+            <th style="border: 1px solid #0094ff;">Name</th>            
+        </tr>
+    </thead>
+    <tbody id="tbody1"></tbody>
+</table>
+
+

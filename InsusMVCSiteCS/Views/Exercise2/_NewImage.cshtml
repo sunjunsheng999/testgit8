@@ -1,0 +1,6 @@
+﻿@model News 
+@using Insus.NET.Models;
+
+<img src="~/Content/Images/new.gif" 
+     style="display: @(DateTime.Now.AddDays(-2) >= Model.PublicDate ? "none" : "visible") " />
+

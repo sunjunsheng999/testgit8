@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/insus.common.utility.js"></script>
+
+<script type="text/javascript">
+    ////<![CDATA[
+    $(document).ready(function () {
+        $("#Loginform").validate({
+            rules: {
+                Account: "required",
+                Password: "required"
+            },
+            messages: {
+                Account: "输入帐号。",
+                Password: "输入密码。"
+            }
+        });
+
+        $('#btnLogin').click(function () {
+            if ($('#Loginform').valid()) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Member/LoginVerify',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        Account: $('#Account').val(),
+                        Password: $('#Password').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data, textStatus) {
+                        alert("登录成功。");
+                        window.location.href = "/Member/Default";
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $.AlertException(XMLHttpRequest, errorThrown);
+                    },
+
+                });
+            }
+            else {
+                return;
+            }
+        });
+
+        $('#btnForgetPwd').click(function () {
+            window.location.href = "/Member/RequestPassword";
+        });
+    });
+    //]]>
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "Loginform" }))
+{
+    <span>Account </span><input type="text" id="Account" name="Account" /><br />
+    <span>Password </span><input type="password" id="Password" name="Password" /><br />
+    <input id="btnLogin" type="button" value="登录" />
+    <input id="btnForgetPwd" type="button" value="忘记密码" />
+}
+

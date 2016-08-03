@@ -1,0 +1,94 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List Demo</title>
+
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    <script src="~/Scripts/insus.common.utility.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "/Home/GetDestinyLists",
+                dataType: "json",
+                type: "Get",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $('<input />', {
+                            type: "radio",
+                            name: "Destiny",
+                            val: item.ID
+                        }).appendTo("#rb_Destiny");
+                        $('<label>', {
+                            for: item.Name ,
+                            text: item.Name,
+                        }).appendTo("#rb_Destiny");
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.AlertException(XMLHttpRequest, errorThrown);
+                }
+            });
+
+
+            $("#Button1").click(function () {
+                var rb = $("#rb_Destiny input:radio[name='Destiny']");
+                rb.prop('checked', false);
+            });
+
+            $("#Button2").click(function () {
+                var rb = $("#rb_Destiny input:radio[name='Destiny']");
+                var index = rb.index(rb.filter(':checked'));
+                alert("选中选项的索引为：" + index);
+            });
+
+            $("#Button3").click(function () {
+                var rb = $("#rb_Destiny input:radio[name='Destiny']");
+                alert("选中选项的值为：" + rb.filter(':checked').val());
+            });
+
+            $("#Button4").click(function () {
+                var rb = $("#rb_Destiny input:radio[name='Destiny']");
+                alert("选中选项的文本为：" + rb.filter(':checked').next('label').text());
+            });
+
+            $("#Button5").click(function () {
+                var rb = $("#rb_Destiny input:radio[name='Destiny']");
+
+                var opt = $("input:radio[name='by']");
+                var v = $('#TextOpt').val();
+
+                switch (opt.filter(':checked').val()) {
+                    case 'bv':
+                        rb.filter('[value=' + v + ']').prop('checked', true);
+                        break;
+                    case 'bt':
+                        var label = $('label[for="' + v + '"]');
+                        label.prev().prop('checked', true);
+                        break;
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div>
+        Destiny: <div id="rb_Destiny"></div>
+        <br />
+        <input id="Button1" type="button" value="清除选中选项" />&nbsp;&nbsp;
+        <input id="Button2" type="button" value="选择索引" />&nbsp;&nbsp;
+        <input id="Button3" type="button" value="选择值" />&nbsp;&nbsp;
+        <input id="Button4" type="button" value="选择文本" /><br /><br />
+        Option: <input type='radio' name='by' value='bv'>By value
+        <input type='radio' name='by' value='bt'>By Text <br /><input id="TextOpt" type="text" /><br />
+        <input id="Button5" type="button" value="根据值设置选中状态" /> <br />
+    </div>
+</body>
+</html>

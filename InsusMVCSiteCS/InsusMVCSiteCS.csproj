@@ -1,0 +1,546 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{18278849-7395-48D6-934F-6BB4720B752B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Insus.NET</RootNamespace>
+    <AssemblyName>InsusMVCSiteCS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="BusinessFrameWork, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\BusinessFrameWork.dll</HintPath>
+    </Reference>
+    <Reference Include="InsusMailUtility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\InsusMailUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.Design.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WebDesign.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.SqlServer.Types.11.0.1\lib\net20\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AspNets\CrystalReportDemo.aspx" />
+    <Content Include="AspNets\FruitSearchView.aspx" />
+    <Content Include="AspNets\RdlcView.aspx" />
+    <Content Include="AspNets\SetValForUc.ascx" />
+    <Content Include="AspNets\Uc1.ascx" />
+    <Content Include="AspNets\WebForm1.aspx" />
+    <Content Include="AspNets\WebUserControl1.ascx" />
+    <Content Include="bin\BusinessFrameWork.dll" />
+    <Content Include="bin\InsusMailUtility.dll" />
+    <Content Include="bin\pdf2swf.exe" />
+    <Content Include="Content\Images\Untitled.bmp" />
+    <Content Include="Content\MenuNavigationBar.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\StyleSheet.css" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\insus.common.utility.js" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\js\flexpaper_flash.js" />
+    <Content Include="Scripts\js\flexpaper_flash_debug.js" />
+    <Content Include="Scripts\js\InsusDocumentView.js" />
+    <Content Include="Scripts\js\InsusDocumentViewer.swf" />
+    <Content Include="Scripts\js\swfobject\expressInstall.swf" />
+    <Content Include="Scripts\js\swfobject\swfobject.js" />
+    <Content Include="Scripts\uploadify\jquery.uploadify.js" />
+    <Content Include="Scripts\uploadify\jquery.uploadify.min.js" />
+    <Content Include="Scripts\uploadify\license.txt" />
+    <Content Include="Scripts\uploadify\uploadify-cancel.png" />
+    <Content Include="Scripts\uploadify\uploadify.css" />
+    <Content Include="Scripts\uploadify\uploadify.swf" />
+    <Content Include="Scripts\vcastr22.swf" />
+    <None Include="Service References\ServiceReference1\Calculator.disco" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Services\Calculator.svc" />
+    <Content Include="Services\FruitKind.svc" />
+    <Content Include="Services\SayHello.asmx" />
+    <Content Include="Web.config" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <None Include="Service References\ServiceReference1\Calculator.wsdl" />
+    <None Include="Service References\ServiceReference1\Calculator.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\Calculator1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutomationTask.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AspNets\CrystalReportDemo.aspx.cs">
+      <DependentUpon>CrystalReportDemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AspNets\CrystalReportDemo.aspx.designer.cs">
+      <DependentUpon>CrystalReportDemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNets\FruitSearchView.aspx.cs">
+      <DependentUpon>FruitSearchView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AspNets\FruitSearchView.aspx.designer.cs">
+      <DependentUpon>FruitSearchView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNets\RdlcView.aspx.cs">
+      <DependentUpon>RdlcView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AspNets\RdlcView.aspx.designer.cs">
+      <DependentUpon>RdlcView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNets\SetValForUc.ascx.cs">
+      <DependentUpon>SetValForUc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AspNets\SetValForUc.ascx.designer.cs">
+      <DependentUpon>SetValForUc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNets\Uc1.ascx.cs">
+      <DependentUpon>Uc1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AspNets\Uc1.ascx.designer.cs">
+      <DependentUpon>Uc1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNets\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AspNets\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNets\WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AspNets\WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\Default1Controller.cs" />
+    <Compile Include="Controllers\Exercise1Controller.cs" />
+    <Compile Include="Controllers\Exercise2Controller.cs" />
+    <Compile Include="Controllers\ExerciseController.cs" />
+    <Compile Include="Controllers\ExperimentController.cs" />
+    <Compile Include="Controllers\FruitController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KindController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Entities\AbbreviatorEntity.cs" />
+    <Compile Include="Entities\FileLibraryEntity.cs" />
+    <Compile Include="Entities\FlexPaperEntity.cs" />
+    <Compile Include="Entities\FruitCategoryEntity.cs" />
+    <Compile Include="Entities\FruitEntity.cs" />
+    <Compile Include="Entities\FruitKindEntity.cs" />
+    <Compile Include="Entities\MailingListEntity.cs" />
+    <Compile Include="Entities\MemberEntity.cs" />
+    <Compile Include="Entities\MiscellaneousEntity.cs" />
+    <Compile Include="Entities\NewsEntity.cs" />
+    <Compile Include="Entities\PinYinEntity.cs" />
+    <Compile Include="Entities\SecurityEntity.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\AutoComplete.ashx.cs">
+      <DependentUpon>AutoComplete.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\Captcha.ashx.cs">
+      <DependentUpon>Captcha.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\Axd.cs" />
+    <Compile Include="HtmlHelpers\HelperExtendMethod.cs" />
+    <Compile Include="Interfaces\IAutoCompletable.cs" />
+    <Compile Include="Models\Abbreviator.cs" />
+    <Compile Include="Models\DateFormat.cs" />
+    <Compile Include="Models\Destiny.cs" />
+    <Compile Include="Models\EightDiagram.cs" />
+    <Compile Include="Models\FileLibrary.cs" />
+    <Compile Include="Models\FlashObject.cs" />
+    <Compile Include="Models\FlexPaper.cs" />
+    <Compile Include="Models\Fruit.cs" />
+    <Compile Include="Models\FruitCategory.cs" />
+    <Compile Include="Models\FruitKind.cs" />
+    <Compile Include="Models\Kind.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\Model2.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\PinYin.cs" />
+    <Compile Include="Models\PvParam.cs" />
+    <Compile Include="Models\Security.cs" />
+    <Compile Include="Models\VideoMedia.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\CaptchaResult.cs" />
+    <Compile Include="Results\Character2ImageResult.cs" />
+    <Compile Include="Results\DownloadResult.cs" />
+    <Compile Include="Results\RmvbResult.cs" />
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Calculator.svc.cs">
+      <DependentUpon>Calculator.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\FruitKind.svc.cs">
+      <DependentUpon>FruitKind.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ICalculator.cs" />
+    <Compile Include="Services\IFruitKind.cs" />
+    <Compile Include="Services\SayHello.asmx.cs">
+      <DependentUpon>SayHello.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\AscxUtility.cs" />
+    <Compile Include="Utilities\BitmapUtility.cs" />
+    <Compile Include="Utilities\CharacterUtility.cs" />
+    <Compile Include="Utilities\CookieUtility.cs" />
+    <Compile Include="Utilities\DataEntity.cs" />
+    <Compile Include="Utilities\FileUtility.cs" />
+    <Compile Include="Utilities\ImageUtility.cs" />
+    <Compile Include="Utilities\RenderUtility.cs" />
+    <Compile Include="Utilities\Thumbnail.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Handlers\AutoComplete.ashx" />
+    <Content Include="Handlers\Captcha.ashx" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Exercise1\InputFilePath.cshtml" />
+    <Content Include="Views\Exercise1\Page1.cshtml" />
+    <Content Include="Views\Exercise1\Page2.cshtml" />
+    <Content Include="Views\Exercise1\Preview.cshtml" />
+    <Content Include="Views\Exercise1\VerifyImage.cshtml" />
+    <Content Include="Views\Exercise1\_PartialPage1.cshtml" />
+    <Content Include="Views\Exercise1\_PartialPage2.cshtml" />
+    <Content Include="Views\Exercise2\AscxDemo.cshtml" />
+    <Content Include="Views\Exercise2\AscxSetValTest.cshtml" />
+    <Content Include="Views\Exercise2\AspxTest.cshtml" />
+    <Content Include="Views\Exercise2\JQueryLoadPartialView.cshtml" />
+    <Content Include="Views\Exercise2\NewsList.cshtml" />
+    <Content Include="Views\Exercise2\UcTest.cshtml" />
+    <Content Include="Views\Exercise2\ViewAscx.cshtml" />
+    <Content Include="Views\Exercise2\_Article.cshtml" />
+    <Content Include="Views\Exercise2\_NewImage.cshtml" />
+    <Content Include="Views\Exercise2\_News.cshtml" />
+    <Content Include="Views\Exercise\AviDemo.cshtml" />
+    <Content Include="Views\Exercise\CaptchaDemo.cshtml" />
+    <Content Include="Views\Exercise\CaptchaDemo_Ver2.cshtml" />
+    <Content Include="Views\Exercise\CaptchaDemo_Ver3.cshtml" />
+    <Content Include="Views\Exercise\Character2Image.cshtml" />
+    <Content Include="Views\Exercise\CharacterDemo.cshtml" />
+    <Content Include="Views\Exercise\CropImageDemo.cshtml" />
+    <Content Include="Views\Exercise\DisplayBase64Image.cshtml" />
+    <Content Include="Views\Exercise\FileDownloadDemo.cshtml" />
+    <Content Include="Views\Exercise\FileListMgr.cshtml" />
+    <Content Include="Views\Exercise\FlvDemo.cshtml" />
+    <Content Include="Views\Exercise\MediaMemo.cshtml" />
+    <Content Include="Views\Exercise\RmDemo.cshtml" />
+    <Content Include="Views\Exercise\RmvbDemo.cshtml" />
+    <Content Include="Views\Exercise\SwfVideoDemo.cshtml" />
+    <Content Include="Views\Exercise\WatermarkDemo.cshtml" />
+    <Content Include="Views\Exercise\WcfServiceDemo.cshtml" />
+    <Content Include="Views\Exercise\WebServiceDemo.cshtml" />
+    <Content Include="Views\Exercise\_Flv.cshtml" />
+    <Content Include="Views\Fruit\Create.cshtml" />
+    <Content Include="Views\Fruit\Details.cshtml" />
+    <Content Include="Views\Fruit\Index.cshtml" />
+    <Content Include="Views\Fruit\Update.cshtml" />
+    <Content Include="Views\Home\CheckboxListDemo.cshtml" />
+    <Content Include="Views\Home\DynamicLoad.cshtml" />
+    <Content Include="Views\Home\FlashDemo.cshtml" />
+    <Content Include="Views\Home\FlexPaperView.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\JQueryAutoCompleteDemo.cshtml" />
+    <Content Include="Views\Home\JQueryAutoCompleteDemo1.cshtml" />
+    <Content Include="Views\Home\ListDemo.cshtml" />
+    <Content Include="Views\Home\PageA.cshtml" />
+    <Content Include="Views\Home\UploadFileDemo.cshtml" />
+    <Content Include="Views\Home\ViewUploadPhoto.cshtml" />
+    <Content Include="Views\Home\_Partial1.cshtml" />
+    <Content Include="Views\Kind\Create.cshtml" />
+    <Content Include="Views\Kind\Delete.cshtml" />
+    <Content Include="Views\Kind\Details.cshtml" />
+    <Content Include="Views\Kind\Edit.cshtml" />
+    <Content Include="Views\Kind\Index.cshtml" />
+    <Content Include="Views\Kind\_PartialKind.cshtml" />
+    <Content Include="Views\Kind\_PartKind.cshtml" />
+    <Content Include="Views\Member\Default.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\Register.cshtml" />
+    <Content Include="Views\Member\RequestChangePasswordMailContent.cshtml" />
+    <Content Include="Views\Member\RequestPassword.cshtml" />
+    <Content Include="Views\Member\ResetPassword.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Default1\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Default1\RdlcReportDemo.cshtml" />
+    <Content Include="Views\Default1\AxdDemo.cshtml" />
+    <Content Include="Views\Default1\RdlcSearchReport.cshtml" />
+    <Content Include="Views\Default1\ConvertBmpToJpg.cshtml" />
+    <Content Include="Views\Kind\GetServiceData.cshtml" />
+    <Content Include="Views\Kind\PostDataToService.cshtml" />
+    <Content Include="Views\Kind\UpdateDataToService.cshtml" />
+    <Content Include="Views\Experiment\Index.cshtml" />
+    <Content Include="Views\Experiment\DynamicallyCreateHtmlTag.cshtml" />
+    <Content Include="Views\Experiment\View1.cshtml" />
+    <Content Include="Views\Experiment\View2.cshtml" />
+    <Content Include="Views\Experiment\View3.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="ExtendMethods\" />
+    <Folder Include="Temp\" />
+    <Folder Include="UploadFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\CategoryRpt.rdlc" />
+    <EmbeddedResource Include="Reports\FruitRpt.rdlc" />
+    <EmbeddedResource Include="Reports\FruitSearchRpt.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57219</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50369/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

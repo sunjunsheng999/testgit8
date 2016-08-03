@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Swf Video Demo</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Exercise/SwfPlayer',
+                dataType: 'html',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#divswf').html(data)
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="divswf"> 
+
+    </div>
+</body>
+</html>

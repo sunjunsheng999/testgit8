@@ -1,0 +1,20 @@
+﻿@using Insus.NET.HtmlHelpers;
+@using Insus.NET.AspNets;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewAscx</title>
+
+</head>
+<body>
+    <div> 
+       @(Html.RenderControl<WebUserControl1>("~/AspNets/WebUserControl1.ascx"))
+    </div>
+</body>
+</html>

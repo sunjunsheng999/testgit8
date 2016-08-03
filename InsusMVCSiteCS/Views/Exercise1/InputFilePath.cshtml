@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UP</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {  
+            $('#btn_UpFile').click(function () {
+                var p = $('#file_pic').val(); 
+                $('span').html(p)
+            })            
+        });
+    </script>
+
+</head>
+<body>
+    <div> 
+        <input type='file' id='file_pic' style="width:500px;" />
+        <input type='button' id='btn_UpFile' value="上传" /><br />
+        <br />
+        <span></span>
+    </div>
+</body>
+</html>

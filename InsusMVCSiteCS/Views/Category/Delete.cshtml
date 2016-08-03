@@ -1,0 +1,35 @@
+﻿@model FruitCategory
+@using Insus.NET.Models;
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@using (Html.BeginForm())
+{
+    <table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">ID</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #0094ff;">
+                    @Html.DisplayFor(o => Model.FruitCategory_nbr)
+                </td>
+                <td style="border: 1px solid #0094ff;">
+                    @Html.DisplayFor(o => Model.CategoryName)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Delete</button>
+    </div>
+}
+@Html.ActionLink("列表", "Index")
+
+

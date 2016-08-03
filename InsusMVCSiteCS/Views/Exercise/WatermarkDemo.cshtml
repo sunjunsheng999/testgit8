@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Watermark Demo</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#ButtonProcess').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Exercise/ProessWatermark',
+                    dataType: 'html',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        $('#div1').html(data)
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input id="ButtonProcess" type="button" value="Process" /><br />
+        <div id="div1"></div>
+    </div>
+</body>
+</html>

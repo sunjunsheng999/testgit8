@@ -1,0 +1,71 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>File Download Demo</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Home/GetAllUploadFile',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data, textStatus) {
+                    var tbody = $('#tbody1');
+                    $.each(data, function (i, item) {
+                        OutputData(tbody, item);
+                    });
+                }
+            });
+        });
+
+        function OutputData(tbody, item) {
+            var uploadTime = new Date(parseInt(item.UploadedTime.substr(6)));
+            var uploadDate = uploadTime.getFullYear() + "-" + uploadTime.getMonth() + "-" + uploadTime.getDate() + " " +
+                uploadTime.getHours() + ":" + uploadTime.getMinutes() + ":" + uploadTime.getMilliseconds();
+
+            var url = '@Url.Action("Download", "Exercise", new { id = "VALUE" })';
+
+            tbody.append("<tr>" +
+                        "<td style=\"border: 1px solid #0094ff;\">" +
+                           item.FileLibrary_nbr +
+                        "</td>" +                       
+                        "<td style=\"border: 1px solid #0094ff;\">" +
+                            item.OldFileName +
+                        "</td>" +
+                        "<td style=\"border: 1px solid #0094ff;\">" +
+                            item.Size +
+                        "</td>" +
+                        "<td style=\"border: 1px solid #0094ff;\">" +
+                            uploadDate +
+                        "</td>" +
+                        "<td style=\"border: 1px solid #0094ff;\">" +
+                             "<a href=\"" + url.replace('VALUE', item.FileLibrary_nbr) + "\">下载</a>" +
+                        "</td>" +
+                        "</tr>");
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <table class="table" style="border-collapse: collapse; width: 60%;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #0094ff;">ID</th>                    
+                    <th style="border: 1px solid #0094ff;">FileName</th>
+                    <th style="border: 1px solid #0094ff;">Size</th>
+                    <th style="border: 1px solid #0094ff;">UploadTime</th>
+                    <th style="border: 1px solid #0094ff;">Download</th>
+                </tr>
+            </thead>
+            <tbody id="tbody1"></tbody>
+        </table>
+    </div>
+</body>
+</html>

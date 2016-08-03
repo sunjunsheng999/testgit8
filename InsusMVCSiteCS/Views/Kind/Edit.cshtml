@@ -1,0 +1,33 @@
+﻿@model FruitKind
+@using Insus.NET.Entities;
+@using Insus.NET.Models;
+
+@{
+    ViewBag.Title = "Edit";    
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">ID</th>
+                <th style="border: 1px solid #0094ff;"> Category</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #0094ff;">
+                    @Html.HiddenFor(o => Model.FruitKind_nbr)
+                </td>
+                @Html.Partial("~/Views/Kind/_partKind.cshtml")
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Update</button>
+}
+@Html.ActionLink("Go back List", "Index")

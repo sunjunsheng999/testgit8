@@ -1,0 +1,25 @@
+﻿@model FruitCategory
+@using Insus.NET.Models;
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.FruitCategory_nbr)
+
+    <div class="editor-label">
+        @Html.Label("category Name :")
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.CategoryName)
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+}
+
+@Html.ActionLink("列表", "Index")
+
+

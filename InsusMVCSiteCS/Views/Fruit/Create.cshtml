@@ -1,0 +1,87 @@
+﻿@model Fruit 
+@using Insus.NET.Models;
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script src="~/Scripts/insus.common.utility.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.get("/Category/GetJsonCategory", null, function (data) {
+            var ddl_c = $("#category");
+           
+            $.DdlBind(ddl_c, data);
+        });
+
+
+        var objKind = $('#kind');
+        objKind.empty();
+
+        $.DdlInitBind(objKind);
+
+        $("#category").change(function (e) {
+            var SelectCategory_nbr = $(this).val();
+
+            $.post("/Kind/GetJsonFruit",
+              { fruitCategory_nbr: SelectCategory_nbr },
+              function (data) {                 
+                  $.DdlBind(objKind, data);
+              });
+        });
+    });   
+
+    $(document).ready(function () {
+       var fruitForm = $("#fruitform");
+
+        $("#btn").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Fruit/Create',
+                dataType: 'json',
+                data: JSON.stringify({
+                    FruitKind_nbr: $("#kind").val(),
+                    FruitName: $("#kindName").val()
+                }),
+                contentType: 'application/json; charset=utf-8',                
+                success: function (data) {
+                    alert("数据成功添加。");
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+    });
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "fruitform" }))
+{
+    <table class="table" style="border-collapse: collapse; width: 40%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">Category</th>
+                <th style="border: 1px solid #0094ff;">Kind</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+            </tr>
+        </thead>
+        <tbody id="tbody1">
+            <tr>
+                <td style="border: 1px solid #0094ff;">
+                    <select id="category" name="category"></select>
+                </td>
+                <td style="border: 1px solid #0094ff;">
+                    <select id="kind" name="kind"></select>
+                </td>
+                <td style="border: 1px solid #0094ff;">
+                    <input type="text" id="kindName" name="KindName" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input id="btn" type="button" value="Save" />
+}
+
+
+

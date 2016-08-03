@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rm Demo</title>
+    @*<script src="~/Scripts/jquery-2.0.2.js"></script>
+  
+      <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Exercise/GetRm',
+                dataType: 'html',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    $('#div_rm').html(data)
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+    </script>*@
+
+</head>
+<body>
+    @*<div id="div_rm">         
+    </div>*@
+
+    @Html.Action("GetRm")
+</body>
+</html>

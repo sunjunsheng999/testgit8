@@ -1,0 +1,152 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CheckboxList Demo</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    
+    <script src="~/Scripts/insus.common.utility.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "/Home/GetEightDiagramLists",
+                dataType: "json",
+                type: "Get",
+                success: function (data) {
+                    var container = $('#cbl_EightDiagram');
+                    $.each(data, function (i, item) {
+                        $('<input />', {
+                            type: "checkbox",
+                            name: "EightDiagram",
+                            val: item.ID
+                        }).appendTo(container);
+                        $('<label>', {
+                            for: item.EDName,
+                            text: item.EDName,
+                        }).appendTo(container);
+                    });
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $.AlertException(XMLHttpRequest, errorThrown);
+                }
+            });
+
+            $("#Button1").click(function () {
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+                cb.prop('checked', false);
+            });
+
+            $("#Button2").click(function () {
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+
+                var index = '';
+                $(cb.filter(':checked')).each(function () {
+                    index = index + ',' + cb.index($(this));
+                });
+                index = index.length > 0 ? index.substring(1, index.length) : "";
+                alert("选中选项的索引为：" + index);
+            });
+
+            $("#Button3").click(function () {
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+
+                var v = '';
+                $(cb.filter(':checked')).each(function () {
+                    v = v + ',' + $(this).val();
+                });
+
+                v = v.length > 0 ? v.substring(1, v.length) : "";
+
+                alert("选中选项的值为：" + v);
+            });
+
+
+            $("#Button4").click(function () {
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+
+                var txt = '';
+                $(cb.filter(':checked').next('label')).each(function () {
+                    txt = txt + ',' + $(this).text();
+                });
+
+                txt = txt.length > 0 ? txt.substring(1, txt.length) : "";
+
+                alert("选中选项的文本为：" + txt);
+            });
+
+            $("#Button5").click(function () {
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+                cb.prop('checked', true);
+            });
+
+            $("#Button6").click(function () {
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+
+                $(cb).each(function () {
+                    var bln = $(this).is(':checked') ? false : true;
+                    $(this).prop('checked', bln);
+                })
+            });
+
+            $("#Button7").click(function () {
+                
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+                cb.filter(':even').prop('checked', true);
+                cb.filter(':odd').prop('checked', false);                
+            });
+
+
+            $("#Button8").click(function () {
+                var cb = $("#cbl_EightDiagram input:checkbox[name='EightDiagram']");
+
+                var opt = $("input:radio[name='by']");
+                var v = $('#TextOpt').val();
+                var arr = v.split(',');
+
+                switch (opt.filter(':checked').val()) {
+                    case 'bv':
+                        cb.prop('checked', false);
+                        $(arr).each(function (index, element) {
+                            cb.filter('[value=' + element + ']').prop('checked', true);
+                        });
+                        break;
+                    case 'bt':
+                        cb.prop('checked', false);
+                        $(arr).each(function (index, element) {
+                            var label = $('label[for="' + element + '"]');
+                            label.prev().prop('checked', true);
+                        });
+                        break;
+                }
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+    <div>
+        Eight Diagram: <div id="cbl_EightDiagram"></div>
+        <br />
+
+        <br />
+        <input id="Button1" type="button" value="清除选中选项" />&nbsp;&nbsp;
+        <input id="Button2" type="button" value="选择索引" />&nbsp;&nbsp;
+        <input id="Button3" type="button" value="选择值" />&nbsp;&nbsp;
+        <input id="Button4" type="button" value="选择文本" />&nbsp;&nbsp;
+        <input id="Button5" type="button" value="全选" />&nbsp;&nbsp;
+        <input id="Button6" type="button" value="反选" />&nbsp;&nbsp;
+        <input id="Button7" type="button" value="选偶项" /><br /><br />
+        Option: <input type='radio' name='by' value='bv'>By value
+        <input type='radio' name='by' value='bt'>By Text <br /><input id="TextOpt" type="text" /><br />
+        <input id="Button8" type="button" value="根据值设置选中状态" /><br /><br />
+
+    </div>
+</body>
+</html>

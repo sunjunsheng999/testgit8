@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Display Base64 Image</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "/Exercise/GetBase64Image",
+                contentType: 'application/json',
+                dataType: "json",
+                success: function (data) {
+                    $("#divImageContent").html('<img src="data:image/png;base64,' + data.Base64Imgage + '" />')
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <div id="divImageContent"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FruitCategory>
+@using Insus.NET.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$("table").delegate("tbody tr", "click", function () {
+
+        //    var id = $(this).find("td:first").html();
+
+        //    alert("点击行记录主键值：" + id);
+        //});
+
+
+        $('tr td:first-child').click(function () {
+            var id = $(this).html();
+            alert("点击行记录主键值：" + id);
+        });
+    });
+</script>
+
+<table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #0094ff;">ID</th>
+            <th style="border: 1px solid #0094ff;">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="border: 1px solid #0094ff;">
+                    @Html.DisplayFor(o => item.FruitCategory_nbr)
+                </td>
+                <td style="border: 1px solid #0094ff;">
+                    @Html.DisplayFor(o => item.CategoryName)
+                </td>
+                <td style="border: 1px solid #0094ff;">
+                    @Html.ActionLink("详细", "Details", new { fruitCategory_nbr = item.FruitCategory_nbr })
+                    @Html.ActionLink("编辑", "Edit", new { fruitCategory_nbr = item.FruitCategory_nbr })
+                    @Html.ActionLink("删除", "Delete", new { fruitCategory_nbr = item.FruitCategory_nbr })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("添加", "Create")

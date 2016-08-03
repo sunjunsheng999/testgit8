@@ -1,0 +1,34 @@
+﻿@model FruitCategory
+
+
+@using Insus.NET.Models;
+@{
+    ViewBag.Title = "Details";
+}
+
+<table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #0094ff;">ID</th>
+            <th style="border: 1px solid #0094ff;">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #0094ff;">
+                @Html.DisplayFor(o => Model.FruitCategory_nbr)
+            </td>
+            <td style="border: 1px solid #0094ff;">
+                @Html.DisplayFor(o => Model.CategoryName)
+            </td>
+            <td style="border: 1px solid #0094ff;">
+                @Html.ActionLink("编辑", "Edit", new { fruitCategory_nbr = Model.FruitCategory_nbr })
+                @Html.ActionLink("删除", "Delete", new { fruitCategory_nbr = Model.FruitCategory_nbr })
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@Html.ActionLink("返回", "Index")
+
+

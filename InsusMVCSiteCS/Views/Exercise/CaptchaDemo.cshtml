@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Captcha Demo</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script type="text/javascript">
+        function Refresh() {
+            var img = document.getElementById("imgCaptcha");
+            img.src = "/Handlers/Captcha.ashx?query=" + Math.random();
+        }
+        $(document).ready(function () {
+            $('#ButtonVerification').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "/Exercise/Verify",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        code: $('#TextCaptchaCode').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        alert(data.Message);
+                        Refresh();
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div>
+        <br />
+        <div style="line-height:35PX;">
+            验证码：<input id="TextCaptchaCode" type="text" /><br />
+            <img id="imgCaptcha" src="/Handlers/Captcha.ashx" style="vertical-align:middle;" />&nbsp;<input id="ButtonRefresh" type="button" value="刷新" onclick="Refresh();" />
+            <br />
+            <input id="ButtonVerification" type="button" value="验证" />
+        </div>
+    </div>
+</body>
+</html>

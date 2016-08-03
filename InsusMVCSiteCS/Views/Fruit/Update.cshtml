@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Update";
+}
+
+<script src="~/Scripts/insus.common.utility.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var nbr = $.urlParam('fruit_nbr');
+        $.ajax({
+            type: 'POST',
+            url: '/Fruit/GetFruitDataByPrimaryKey',
+            dataType: 'json',
+            data: JSON.stringify({
+                fruit_nbr: nbr
+            }),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                var tbody = $('#tbody1');
+                $.each(data, function (i, item) {
+                    OutputData(tbody, item);
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+    });
+
+    function OutputData(tbody, item) {
+        tbody.append("<tr>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.Fruit_nbr +
+                         "<input id=\"fruit_nbr\" type=\"hidden\"  value=\"" + item.Fruit_nbr + "\" />" +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                      "<select id=\"category\" name=\"category\"></select>" +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        "<select id=\"kind\" name=\"kind\"></select>" +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                    "<input type=\"text\" id=\"FruitName\" name=\"FruitName\" value=\"" + item.FruitName + "\" />" +
+                    "</td>" +
+                    "</tr>");
+
+        var ddlCategory = $('#category');
+        var ddlKind = $('#kind');
+
+        $.get("/Category/GetJsonCategory", null, function (data) {
+            $.DdlBind(ddlCategory, data, item.FruitCategory_nbr);
+        });
+
+        $.post("/Kind/GetJsonFruit",
+              { fruitCategory_nbr: item.FruitCategory_nbr },
+              function (data) {
+                  $.DdlBind(ddlKind, data, item.FruitKind_nbr);
+              });
+    }
+
+    $(document).ready(function () {
+        $('#tbody1').delegate('#category', 'change', function (e) {
+            var tr = $(this).closest('tr');
+            $.post("/Kind/GetJsonFruit",
+              { fruitCategory_nbr: tr.find("#category").val() },
+              function (data) {
+                  $.DdlBind(tr.find("#kind"), data, 0);
+              });
+        });
+    })
+
+    $(document).ready(function () {
+        $("#btnUpdate").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Fruit/Update',
+                dataType: 'json',
+                data: JSON.stringify({
+                    Fruit_nbr: $('#fruit_nbr').val(),
+                    FruitKind_nbr: $('#kind').val(),
+                    FruitName: $("#FruitName").val()
+                }),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    alert("数据成功更新。");
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+    })
+
+    $.urlParam = function (name) {
+        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null) {
+            return null;
+        }
+        else {
+            return results[1] || 0;
+        }
+    }
+
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "fruitform" }))
+{
+    <table id="fTable" class="table" style="border-collapse: collapse; width: 40%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">ID</th>
+                <th style="border: 1px solid #0094ff;">Category</th>
+                <th style="border: 1px solid #0094ff;">Kind</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+            </tr>
+        </thead>
+        <tbody id="tbody1"></tbody>
+    </table>
+
+    <input id="btnUpdate" type="button" value="Save" />
+}
+

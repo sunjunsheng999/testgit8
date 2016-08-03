@@ -1,0 +1,28 @@
+﻿#Menu_nb ul {
+    float: left;
+    width: 98%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+    #Menu_nb ul a {
+        float: right;
+        width: 60px;
+        text-decoration: none;
+        color: white;
+        background-color: #0094ff;
+        padding: 0.2em;
+        text-align: center;
+        border-right: 1px solid white;
+    }
+
+        #Menu_nb ul a:hover {
+            background-color: #0026ff;
+            color: white;
+        }
+
+#Menu_nb li {
+    display: inline;
+}
+

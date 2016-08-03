@@ -1,0 +1,68 @@
+﻿@model IEnumerable<FruitKind>
+@using Insus.NET.Models;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+    .overStyle {
+        background-color: Peachpuff;
+    }
+
+    .focusStyle {
+        background-color:red;
+    }
+   
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('tbody tr').mouseover(function () {
+        //    $(this).addClass('overStyle');
+        //}).mouseout(function () {
+        //    $(this).removeClass('overStyle');
+        //})        
+        
+
+        //$('tbody td').mouseover(function () {            
+        //    $('td:nth-child(' + ($(this).index() + 1) + ')').addClass('overStyle');            
+        //}).mouseout(function () {            
+        //    $('td:nth-child(' + ($(this).index() + 1) + ')').removeClass('overStyle');
+        //})
+        
+        $('tbody td').mouseover(function () {            
+            $(this).siblings().addClass('overStyle');
+            $('td:nth-child(' + ($(this).index() + 1) + ')').addClass('overStyle');
+            $(this).addClass('focusStyle');
+        }).mouseout(function () {
+            $(this).siblings().removeClass('overStyle');
+            $('td:nth-child(' + ($(this).index() + 1) + ')').removeClass('overStyle');
+            $(this).removeClass('focusStyle');
+        })
+    });
+</script>
+<table class="table" style="border-collapse: collapse; width: 40%;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.Partial("~/Views/Kind/_PartialKind.cshtml", item)
+                <td style="border: 1px solid #0094ff;">
+                    @Html.ActionLink("Details", "Details", item)|
+                    @Html.ActionLink("Edit", "Edit", new { fruitKind_nbr = item.FruitKind_nbr })
+                    @Html.ActionLink("Delete", "Delete", new { fruitKind_nbr = item.FruitKind_nbr })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Create", "Create")
+

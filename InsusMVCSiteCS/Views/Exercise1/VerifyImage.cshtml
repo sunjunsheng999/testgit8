@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Verify Image</title>
+
+
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+        
+    <script src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+    <link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ButtonVerify').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Exercise1/Verify',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data, textStatus) {
+                        alert(data.result);
+                    }
+                });
+            })
+
+            $("#Filedata").uploadify({
+                'debug': false,               
+                'swf': '/Scripts/uploadify/uploadify.swf',
+                'uploader': '/Exercise1/UploadImageFile',
+                'cancelImage': '/Scripts/uploadify/uploadify-cancel.png',
+                'multi': false,
+                'auto': true,
+                'buttonText': '上传本地图片',
+                'onUploadSuccess': function (file, data, response) {
+                    $("#msg").html(data);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input id="ButtonVerify" type="button" value="Verify" /><br />
+        <br />
+        <span id="msg"></span><br />
+        <br />
+        <input id="Filedata" type="file" name="Filedata" />
+    </div>
+</body>
+</html>

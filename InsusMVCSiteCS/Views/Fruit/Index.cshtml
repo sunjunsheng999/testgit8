@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<style type="text/css">
+    .tr-oddStyle {
+        background-color: #ffecd5;
+    }
+
+    .tr-evenStyle {
+        background-color: #fff;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getJSON("/Fruit/GetAllFuritData", null, function (data) {
+            var tbody = $('#tbody1');
+            $.each(data, function (i, item) {
+                OutputData(tbody, item);
+            });
+
+            $("table tbody tr:nth-child(odd)").addClass("tr-oddStyle");
+            $("table tbody tr:nth-child(even)").addClass("tr-evenStyle");
+        });
+    });
+
+    function OutputData(tbody, item) {
+        var url = '@Url.Action("Update", "Fruit", new {fruit_nbr = "VALUE"})';
+
+        tbody.append("<tr>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                       item.Fruit_nbr +
+                       "<input id=\"fruit_nbr\" type=\"hidden\"  value=\"" + item.Fruit_nbr + "\" />" +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.CategoryName +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.KindName +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        item.FruitName +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                       "<a href='@Url.Action("Details", "Fruit",  new { fruit_nbr = String.Empty})?fruit_nbr=" + item.Fruit_nbr + "'>View Details</a>" +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                       "<input id=\"btnDelete\" type=\"button\" value=\"Delete\" />" +
+                    "</td>" +
+                    "<td style=\"border: 1px solid #0094ff;\">" +
+                        "<a href=\"" + url.replace('VALUE', item.Fruit_nbr) + "\">Update</a>" +
+                    "</td>" +
+                    "</tr>");
+    }
+
+    $(document).ready(function () {
+        $('#tbody1').delegate('#btnDelete', 'click', function () {
+            var tr = $(this).closest('tr');
+            $.ajax({
+                type: 'POST',
+                url: '/Fruit/Delete',
+                dataType: 'json',
+                data: JSON.stringify({
+                    Fruit_nbr: tr.find('#fruit_nbr').val(),
+                }),
+                contentType: 'application/json; charset=utf-8',
+                success: function (data, textStatus) {
+                    tr.remove();
+                    alert("数据成功删除。");
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        });
+    });
+
+
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "fruitform" }))
+{
+    <table class="table" style="border-collapse: collapse; width: 60%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">ID</th>
+                <th style="border: 1px solid #0094ff;">Category</th>
+                <th style="border: 1px solid #0094ff;">Kind</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+                <th style="border: 1px solid #0094ff;">Details</th>
+                <th style="border: 1px solid #0094ff;">Delete</th>
+                <th style="border: 1px solid #0094ff;">Update</th>
+            </tr>
+        </thead>
+        <tbody id="tbody1"></tbody>
+    </table>
+
+
+}
+

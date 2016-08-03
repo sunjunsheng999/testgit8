@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ConvertBmpToJpg</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Button1').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "/Default1/ConverToJpg",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        bmp: $('#imgBmp').attr('src')
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {                       
+                        $('#result').attr('src', data.result);                        
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div> 
+        <img id="imgBmp" src="~/Content/Images/Untitled.bmp" /><br />
+
+        <input id="Button1" type="button" value="Conver to Jpg" /><br />
+
+        <img id="result"  alt="" />
+    </div>
+</body>
+</html>

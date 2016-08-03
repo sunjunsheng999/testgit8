@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View1</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
+            //示例一：
+            //var $lbl = $('<label>', {               
+            //    text: "Name",
+            //});
+
+            //$('div').append($lbl) //在div标签内，添加一个Label
+
+
+
+
+            //示例二：
+            var $txt = $('<input/>').attr({ type: 'text', name: 'text1'});
+
+            $txt.appendTo($('div')); //把文本框添加至div标签内
+
+        });
+    </script>
+</head>
+<body>
+    <div> 
+
+    </div>
+</body>
+</html>

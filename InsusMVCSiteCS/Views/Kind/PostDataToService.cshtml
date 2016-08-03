@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PostDataToService</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btnCreate").click(function () {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:50369/Services/FruitKind.svc/Create",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    crossDomain: true,
+                    data: JSON.stringify({
+                        fruitCategory_nbr: $("#FruitCategory_nbr").val(),
+                        kindName: $("#KindName").val()
+                    }),
+                    success: function (data) {
+                        alert("数据成功添加。");
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div>
+        <table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #0094ff;">ID</th>
+                    <th style="border: 1px solid #0094ff;"> Category</th>
+                    <th style="border: 1px solid #0094ff;">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #0094ff;"></td>
+                    @Html.Partial("~/Views/Kind/_PartKind.cshtml")
+                </tr>
+            </tbody>
+        </table>
+
+        <button id="btnCreate">Create</button>
+    </div>
+</body>
+</html>

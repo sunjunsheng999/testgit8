@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>JQuery Load Partial View</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Exercise2/News',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html'
+            })
+            .success(function (data) {
+                $('#div1').html(data)
+            })
+            .error(function (xhr, status) {
+                alert(status)
+            })
+
+            $.ajax({
+                type: 'GET',
+                url: '/Exercise2/Article',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html'
+            })
+           .success(function (data) {
+               $('#div2').html(data)
+           })
+           .error(function (xhr, status) {
+               alert(status)
+           })
+        });
+    </script>
+
+</head>
+<body>
+    <div>
+        <div>The news Lists:</div>
+        <div id="div1"></div>
+        <br />
+        <br />
+        <div>
+            The Article Lists:
+        </div>
+        <div id="div2"></div>
+    </div>
+</body>
+</html>

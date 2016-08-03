@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Upload File Demo</title>
+    @*<script src="~/Scripts/jquery-1.6.4.js"></script>*@
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+   
+    <script src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+    <link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" />
+
+    <script type="text/javascript">       
+        $(document).ready(function () {
+            $('#Filedata').uploadify({               
+                swf: '/Scripts/uploadify/uploadify.swf',
+                uploader: '/Home/UploadFile',
+                multi: false,
+                auto: true,               
+                fileObjName: 'Filedata'
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>       
+        <div id="queue"></div>
+        <input id="Filedata" type="file" name="Filedata" />
+    </div>
+</body>
+</html>

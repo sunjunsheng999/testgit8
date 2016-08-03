@@ -1,0 +1,34 @@
+﻿@model FruitKind
+@using Insus.NET.Models;
+@{
+    ViewBag.Title = "Delete";
+}
+   <script type="text/javascript">
+       $(document).ready(function () {     // $(function () {         
+        $("button[name='delete']").click(function () {
+            return confirm('确定是否删除此笔记录?');
+        });
+    });
+</script> 
+
+
+
+@using (Html.BeginForm())
+{
+    <table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">ID</th>
+                <th style="border: 1px solid #0094ff;"> Category</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @Html.Partial("~/Views/Kind/_PartialKind.cshtml")
+            </tr>
+        </tbody>
+    </table>   
+    <button type="submit" name="delete" class="btn btn-primary">Delete</button>
+}
+@Html.ActionLink("Go back List", "Index")

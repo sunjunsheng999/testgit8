@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Captcha Demo Ver2</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script type="text/javascript">  
+        $(document).ready(function () {
+            $('#imgCaptcha').attr('src', '@Url.Action("GetCapptImage", "Exercise")');
+
+            $('#imgCaptcha').click(function () {
+                 $(this).attr('src', '/Exercise/GetCapptImage?id=' + Math.random())  
+            });
+
+            $('#ButtonVerification').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "/Exercise/CaptchaValid",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        captchaText: $('#TextCaptchaCode').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {                       
+                        $('#msg').html(data.Message)
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $('#msg').html(errorThrown);
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        验证码：<input id="TextCaptchaCode" type="text" /><br />
+        <img id="imgCaptcha" alt="" />
+        <br />
+        <input id="ButtonVerification" type="button" value="验证" /><br />
+        <span id="msg"></span>
+    </div>
+</body>
+</html>

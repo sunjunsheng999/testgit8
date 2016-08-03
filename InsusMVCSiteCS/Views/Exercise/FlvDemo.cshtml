@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Flv Demo</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Exercise/PlayFlv",
+                data: {
+                    Width: 400,
+                    Height: 300,
+                    FilePath: "/UploadFiles/Wildlife.flv"
+                },
+                type: "GET",
+                dataType: "html",
+                success: function (data) {
+                    $('#divFlv').html(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest, errorThrown);
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <div id="divFlv">       
+    </div>
+</body>
+</html>

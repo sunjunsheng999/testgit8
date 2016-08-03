@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Wcf Service Demo</title>   
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+
+            $("#ButtonAdd").click(function () {
+                $.GetCalcResult('Add');
+            });
+
+            $("#ButtonSubtract").click(function () {
+                $.GetCalcResult('Subtract');
+            });
+
+            $("#ButtonMultiply").click(function () {
+                $.GetCalcResult('Multiply');
+            });
+
+            $("#ButtonDivide").click(function () {
+                $.GetCalcResult('Divide');
+            });
+
+            $.extend({
+                GetCalcResult: function (Operate) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Exercise/GetCalcResult',
+                        dataType: 'html',
+                        data: JSON.stringify({
+                            Operate: Operate,
+                            number1: $('#TextNumber1').val(),
+                            number2: $('#TextNumber2').val()
+                        }),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            $('#divResult').html(data)   
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(errorThrown);
+                        }
+                    });
+                }
+            });
+        });    
+    </script>
+</head>
+<body>
+    <div style="line-height:30px;"> 
+        Number1: <input id="TextNumber1" type="text" />&nbsp;&nbsp; Number2: <input id="TextNumber2" type="text" /><br />
+        Operate： <input id="ButtonAdd" type="button" value="+" style="width:30px; height:25px; font-size:10pt;" />
+        <input id="ButtonSubtract" type="button" value="-" style="width: 30px; height: 25px; font-size: 10pt; " />
+        <input id="ButtonMultiply" type="button" value="×" style="width: 30px; height: 25px; font-size: 10pt; " />
+        <input id="ButtonDivide" type="button" value="÷" style="width: 30px; height: 25px; font-size: 10pt; " /><br />
+        Result: <div id="divResult"></div>
+    </div>
+</body>
+</html>

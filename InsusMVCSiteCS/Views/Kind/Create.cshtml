@@ -1,0 +1,31 @@
+﻿@model FruitKind
+@using Insus.NET.Entities;
+@using Insus.NET.Models;
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    
+    <table style="border: 1px solid #0094ff; border-collapse: collapse; width: 40%;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #0094ff;">ID</th>
+                <th style="border: 1px solid #0094ff;"> Category</th>
+                <th style="border: 1px solid #0094ff;">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>              
+                <td style="border: 1px solid #0094ff;"></td>               
+                @Html.Partial("~/Views/Kind/_PartKind.cshtml")
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+}
+@Html.ActionLink("Go back List", "Index")
+

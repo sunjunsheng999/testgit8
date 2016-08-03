@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetServiceData</title>
+
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "post",
+                url: "http://localhost:50369/Services/FruitKind.svc/GetAll",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",               
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        var html = "<tr><td style=\"border: 1px solid #0094ff;\">";
+                        html += item.FruitKind_nbr + "</td><td  style=\"border: 1px solid #0094ff;\">";
+                        html += item.FruitCategory_nbr + "</td><td style=\"border: 1px solid #0094ff;\">";
+                        html += item.CategoryName + "</td><td style=\"border: 1px solid #0094ff;\">";
+                        html += item.KindName + "</td><td style=\"border: 1px solid #0094ff;\">";
+                        html += "<a href='@Url.Action("UpdateDataToService", "Kind")?fruitKind_nbr="
+                            + item.FruitKind_nbr + "'>Details</a></td></tr>";
+                        $("#FruitKind").append(html);
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <table id="FruitKind" style="border-collapse: collapse; border: 1px solid #0094ff; width:50%;">
+            <tr>
+                <th style="border: 1px solid #0094ff;">FruitKind_nbr</th>
+                <th style="border: 1px solid #0094ff;">FruitCategory_nbr</th>
+                <th style="border: 1px solid #0094ff;">CategoryName</th>
+                <th style="border: 1px solid #0094ff;">KindName</th>
+                <th style="border: 1px solid #0094ff;">Details</th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

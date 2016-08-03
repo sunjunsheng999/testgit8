@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View2</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var AddButton = $('#ButtonAdd');
+            var InputContainer = $('#InputContainer');
+            var fieldCount = 1;
+            $(AddButton).click(function (e) {
+                var $div = $('<div/>');
+
+                var $newInput = $('<input/>', {
+                    type: 'text',
+                    id: 'txt_' + fieldCount
+                });
+
+                var $removeflag = $('<input/>', {
+                    type: 'button',
+                    id: 'btn_' + fieldCount,
+                    value: '-',
+                    click: function () {
+                        var div = $(this).closest('div');
+                        $(div).remove();
+                        fieldCount--;
+                    }
+                });
+
+                $(InputContainer).append(($div).append($newInput).append($removeflag));
+                fieldCount++;
+            });
+            
+
+            $('#ButtonGet').click(function () {
+                var ResultContainer = $('#ResultContainer');
+                $(ResultContainer).empty();
+
+                $('#InputContainer input[type=text]').each(function () {
+                    $(ResultContainer).append(this.id + ": " + $(this).val() + "; ");
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <input id="ButtonAdd" type="button" value="+" />&nbsp;
+    <input id="ButtonGet" type="button" value="Get text value" />
+    <div id="InputContainer">
+    </div>
+    <div id="ResultContainer">
+    </div>
+</body>
+</html>

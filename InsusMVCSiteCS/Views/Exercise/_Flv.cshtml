@@ -1,0 +1,24 @@
+﻿@model VideoMedia
+@using Insus.NET.Models;
+
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+        codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0"
+        width=@Html.DisplayFor(o => Model.Width)
+        height=@Html.DisplayFor(o => Model.Height)>
+    <param name="movie" value="/Scripts/vcastr22.swf">
+    <param name="quality" value="high">
+    <param name="menu" value="false">
+    <param name="wmode" value="opaque">
+    <param name="allowFullScreen" value="true">
+    <param name="FlashVars"
+           value='vcastr_file=@Html.DisplayFor(o => Model.FilePath)&vcastr_title=&vcastr_config=1:自动播放|0:连续播放|100:默认音量|0:控制栏位置|2:控制栏显示|0x000033:主体颜色|60:主体透明度|0x66ff00:光晕颜色|0xffffff:图标颜色|0xffffff:文字颜色|:logo文字|:logo地址|:结束swf地址'>
+    <embed src="/Scripts/vcastr22.swf"
+           wmode="opaque"
+           flashvars='vcastr_file=@Html.DisplayFor(o => Model.FilePath)&vcastr_title=&vcastr_config=1:自动播放|0:连续播放|100:默认音量|0:控制栏位置|2:控制栏显示|0x000033:主体颜色|60:主体透明度|0x66ff00:光晕颜色|0xffffff:图标颜色|0xffffff:文字颜色|:logo文字|:logo地址|:结束swf地址'
+           menu="false"
+           quality="high"
+           width=@Html.DisplayFor(o => Model.Width)
+           height=@Html.DisplayFor(o => Model.Height)
+           type="application/x-shockwave-flash"
+           pluginspage="http://www.macromedia.com/go/getflashplayer" />
+</object>

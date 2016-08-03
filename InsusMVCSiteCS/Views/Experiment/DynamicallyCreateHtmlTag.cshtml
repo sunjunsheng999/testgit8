@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DynamicallyCreateHtmlTag</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $txt = $('<input/>').attr({ type: 'text', name: 'text1', value: 'Insus.NET' });
+            $('#divtext').append($txt);
+
+            var $cb = $('<input/>').attr({ type: 'checkbox', name: 'checkbox1', checked: true });
+            $('#divcheckbox').append($cb);
+
+            var $rdo = $('<input/>').attr({ type: 'radio', name: 'sex', val: 'M' });
+            var $lblm = $('<label>', {
+                for: "M",
+                text: "M",
+            });
+            $('#divradio').append($rdo).append($lblm);
+
+            var $rdo = $('<input/>').attr({ type: 'radio', name: 'sex', val: 'F', checked: true });
+            var $lblf = $('<label>', {
+                for: "F",
+                text: "F",
+            });
+            $('#divradio').append($rdo).append($lblf);
+
+            var $btn = $('<input/>').attr({ type: 'button', name: 'btn', value: 'Button' });
+            $('#divbutton').append($btn);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <div>text:</div>
+        <div id="divtext"></div><br />
+        <div>checkbox:</div>
+        <div id="divcheckbox"></div><br />
+        <div>radio:</div>
+        <div id="divradio"></div><br />
+        <div>button:</div>
+        <div id="divbutton"></div><br />
+    </div>
+</body>
+</html>

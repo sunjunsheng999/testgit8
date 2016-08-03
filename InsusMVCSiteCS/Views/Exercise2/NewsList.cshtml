@@ -1,0 +1,62 @@
+﻿@model IEnumerable<News>
+@using Insus.NET.Models;
+
+@*@using Insus.NET.HtmlHelpers;*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>News List</title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #0094ff;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <table class="table" style="width: 40%;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Subject</th>
+                    <th>PublicDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(o => item.News_nbr)
+                        </td>
+                        <td>
+                            @*<img src="~/Content/Images/new.gif"
+                                 style="display: @( DateTime.Now.AddDays(-2) >= item.PublicDate ? "none" : "visible") " />*@
+
+                            @*@Html.NewImage(item.PublicDate)*@
+
+                            @Html.Partial("_NewImage", item)
+
+                            @Html.DisplayFor(o => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(o => item.PublicDate)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

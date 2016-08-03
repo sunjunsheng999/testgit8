@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View3</title>
+    <script src="~/Scripts/jquery-2.1.0.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var totalChars = 50;
+            $('#spanCountchars').append("文本框允许输入" + totalChars + "个字符。")
+
+            var spanRemainCountchars = $('#spanRemainCountchars');
+            spanRemainCountchars.text("还可输入：" + totalChars + "字符。");
+
+
+            //$('#ButtonCalc').click(function () {
+
+            // $('#TextArea1').keyup(function () {
+            // var len = $('#TextArea1').val().length;
+            // var len = $(this).val().length;
+
+            //alert("文本框输入：" + len + "字符。");
+
+            // var remainCount = totalChars - len;
+
+            // if (remainCount > 0)
+            //alert("还可输入：" + remainCount + "字符。");
+            //  spanRemainCountchars.text("还可输入：" + remainCount + "字符。");
+            // else
+            //alert("字符输入过长：" + remainCount + "字符。");
+            //   spanRemainCountchars.text("字符输入过长：" + remainCount + "字符。");
+            //  });
+            //});
+        
+            $('#TextArea1').keyup(function () {
+                var inputLen = this.value.length;
+                               
+                if (inputLen > totalChars) {
+                    var deleLen = inputLen - totalChars;
+                    this.value = this.value.substring(0, this.value.length - deleLen);
+                }
+                else {
+                    var remainCount = totalChars - inputLen;
+                    spanRemainCountchars.text("还可输入：" + remainCount + "字符。");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <textarea id="TextArea1" rows="3" cols="50"></textarea>
+        @*<input id="ButtonCalc" type="button" value="Calc">*@
+        <div><span id="spanCountchars"></span></div>
+        <div><span id="spanRemainCountchars"></span></div>
+    </div>
+</body>
+</html>

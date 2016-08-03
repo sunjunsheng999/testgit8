@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Character to Image</title>
+    <script src="~/Scripts/jquery-2.0.2.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {   
+            $('#ButtonGet').click(function () {
+                $('#img1').attr('src', '/Exercise/Char2Img?' + Math.random())
+            });         
+        });
+
+    </script>
+</head>
+<body>
+    <div> 
+        <input id="ButtonGet" type="button" value="Get" /><br />
+        <img id="img1" alt="" />
+    </div>
+</body>
+</html>
